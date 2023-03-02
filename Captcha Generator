@@ -1,0 +1,33 @@
+import java.util.Random;
+
+public class CaptchaEngine {
+    
+    private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    private static final int CAPTCHA_LENGTH = 6;
+    
+    public static String generateCaptcha() {
+        StringBuilder captcha = new StringBuilder();
+        Random random = new Random();
+        
+        for (int i = 0; i < CAPTCHA_LENGTH; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            captcha.append(CHARACTERS.charAt(index));
+        }
+        
+        return captcha.toString();
+    }
+    
+    public static boolean verifyCaptcha(String captcha, String userInput) {
+        return captcha.equals(userInput);
+    }
+    
+    public static void main(String[] args) {
+        String captcha = generateCaptcha();
+        System.out.println("Generated captcha: " + captcha);
+        
+        // simulate user input
+        String userInput = "ABc12d";
+        boolean isValid = verifyCaptcha(captcha, userInput);
+        System.out.println("Is captcha valid? " + isValid);
+    }
+}
