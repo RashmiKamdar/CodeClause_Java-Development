@@ -1,0 +1,49 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class ResumeBuilder {
+    
+    private static final String FILENAME = "resume.txt";
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Welcome to the online resume builder!");
+        
+        // Get personal information
+        System.out.println("Please enter your full name:");
+        String fullName = scanner.nextLine();
+        
+        System.out.println("Please enter your email address:");
+        String email = scanner.nextLine();
+        
+        System.out.println("Please enter your phone number:");
+        String phone = scanner.nextLine();
+        
+        // Get education
+        System.out.println("Please enter your educational qualifications:");
+        String education = scanner.nextLine();
+        
+        // Get work experience
+        System.out.println("Please enter your work experience:");
+        String experience = scanner.nextLine();
+        
+        // Get skills
+        System.out.println("Please enter your skills:");
+        String skills = scanner.nextLine();
+        
+        // Save resume to file
+        try (FileWriter writer = new FileWriter(FILENAME)) {
+            writer.write("Name: " + fullName + "\n");
+            writer.write("Email: " + email + "\n");
+            writer.write("Phone: " + phone + "\n\n");
+            writer.write("Education: " + education + "\n\n");
+            writer.write("Experience: " + experience + "\n\n");
+            writer.write("Skills: " + skills + "\n\n");
+            System.out.println("Resume saved to " + FILENAME);
+        } catch (IOException e) {
+            System.err.println("Error saving resume to file: " + e.getMessage());
+        }
+    }
+}
